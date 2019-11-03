@@ -44,17 +44,18 @@ steps:
       **/*.zip
     TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy'
     flattenFolders: true
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/deploy'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/src/PokerLeagueManager.Utilities/debug'
+    SourceFolder: '$(Build.SourcesDirectory)\deploy'
     Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy/Utility'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\deploy'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)\src\PokerLeagueManager.Utilities\debug'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\deploy\Utility'
 
 - task: PublishBuildArtifacts@1
   inputs:
