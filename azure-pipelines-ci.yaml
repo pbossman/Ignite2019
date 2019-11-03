@@ -61,6 +61,19 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)\Utility'
 
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    ConnectedServiceName: 'DevOps CAT Workshops (e16d929e-2ebf-4445-805e-c032ef6c4559)'
+    subscriptionName: 'e16d929e-2ebf-4445-805e-c032ef6c4559'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '009schlauge'
+    location: 'West US 2'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(Build.SourcesDirectory)\deploy\Azure ARM\ArmTemplate.json'
+    overrideParameters: '--AppName 009schaluge222'
+    deploymentMode: 'Incremental'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
