@@ -46,10 +46,10 @@ steps:
     flattenFolders: true
 
 - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(Build.SourcesDirectory)/deploy'
-        Contents: '**'
-        TargetFolder: '$(Build.ArtifactsStagingDirectory)/deploy'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/deploy'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactsStagingDirectory)/deploy'
 
 - task: CopyFiles@2
   inputs:
