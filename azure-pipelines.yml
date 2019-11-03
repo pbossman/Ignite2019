@@ -42,7 +42,7 @@ steps:
     Contents: |
       **/*.dacpac
       **/*.zip
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
     flattenFolders: true
 
 - task: CopyFiles@2
@@ -55,7 +55,7 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)\src\PokerLeagueManager.Utilities\debug'
     Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)\deploy\Utility'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\Utility'
 
 - task: PublishBuildArtifacts@1
   inputs:
