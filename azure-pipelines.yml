@@ -39,8 +39,23 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: |
+      **/*.dacpac
+      **/*.zip
+    TargetFolder: '$(Build.SourcesDirectory)'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)/Deploy'
     Contents: '**'
     TargetFolder: '$(Build.SourcesDirectory)/deploy'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)/bin/debug'
+    Contents: '**'
+    TargetFolder: '$(Build.SourcesDirectory)/Utility'
+
 
 - task: PublishBuildArtifacts@1
   inputs:
