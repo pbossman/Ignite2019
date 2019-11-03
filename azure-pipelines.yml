@@ -22,7 +22,7 @@ steps:
     restoreSolution: '$(solution)'
 - task: BatchScript@1
   inputs:
-    filename: '$(build.sourcesdirectory)/src/PokerLeagueManager.UI.Web/BuildAngular.bat'
+    filename: '$(build.SourcesDirectory)/src/PokerLeagueManager.UI.Web/BuildAngular.bat'
 
 - task: VSBuild@1
   inputs:
@@ -38,9 +38,23 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+      **/*.dacpac
+      **/*.zip
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy'
+    flattenFolders: true
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/deploy'
     Contents: '**'
-    TargetFolder: '$(Build.SourcesDirectory)/deploy'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/src/PokerLeagueManager.Utilities/debug'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy/Utility'
 
 - task: PublishBuildArtifacts@1
   inputs:
