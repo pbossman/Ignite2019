@@ -41,7 +41,9 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
       **/*.dacpac
-      **/*.zip
+      **/*.Events.WebApi.zip
+      **/*.Queries.WebApi.zip
+      **/*.UI.Web.zip
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     flattenFolders: true
 
